@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datepot</title>
+
+    <link rel="stylesheet" href="visual.css">
+</head>
+<body>
+
+<header>
+    Datepot
+</header>
+
+<nav>
+    <a>❤️ Apost no Amor ❤️ </a>
+
+</nav>
+
+<div class="container">
+    <div class="input-container">
+        <input type="text" id="username" placeholder="Digite seu nome" />
+        <button onclick="setCurrentUser()">Definir Usuário</button>
+    </div>
+
+    <div class="input-container">
+        <input type="text" id="newUser" placeholder="Digite o nome para adicionar" />
+        <button onclick="addName()">Adicionar Usuário</button>
+    </div>
+
+    <div class="name-list" id="nameList">
+        <h3>Usuários na Sala</h3>
+    </div>
+</div>
+
+<div class="jackpot" id="jackpotMessage" onclick="closeJackpot()">
+    <h2>🎉 DATEPOT! 🎉</h2>
+    <p>Parabéns aos amantes!</p>
+    <p id="jackpotNames"></p>
+</div>
+
+<footer>
+    &copy; 2025 Datepot. Todos os direitos reservados ao João e ao Vítor.
+</footer>
+
+<!-- Referenciando o arquivo JS externo -->
+<script src="incremento.js"></script>
+
+</body>
+</html>
