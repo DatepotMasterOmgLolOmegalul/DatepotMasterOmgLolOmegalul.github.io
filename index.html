@@ -1,51 +1,99 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datepot</title>
-
     <link rel="stylesheet" href="visual.css">
 </head>
 <body>
-
 <header>
     Datepot
 </header>
-
 <nav>
-    <a>❤️ Apost no Amor ❤️ </a>
-
+    <a> Aposte no Amor  </a>
 </nav>
-
 <div class="container">
     <div class="input-container">
         <input type="text" id="username" placeholder="Digite seu nome" />
-        <button onclick="setCurrentUser()">Definir Usuário</button>
+        <button onclick="definirUsuario()">Definir Usuário</button>
     </div>
-
     <div class="input-container">
         <input type="text" id="newUser" placeholder="Digite o nome para adicionar" />
-        <button onclick="addName()">Adicionar Usuário</button>
+        <button onclick=" adionadordenome()">Adicionar Usuário</button>
     </div>
-
     <div class="name-list" id="nameList">
         <h3>Usuários na Sala</h3>
     </div>
 </div>
-
-<div class="jackpot" id="jackpotMessage" onclick="closeJackpot()">
+<div class="jackpot" id="jackpotMessage" onclick="fecharDatepot()">
     <h2>🎉 DATEPOT! 🎉</h2>
     <p>Parabéns aos amantes!</p>
     <p id="jackpotNames"></p>
 </div>
-
+<div style="overflow-x:auto;">
+    <h1>Como funciona o nosso site</h1>
+    <div class="content-box">
+      <p>Muitas pessoas têm dificuldades em se relacionar com outras pessoas pelas quais têm interesse romântico. Muitas vezes por timidez ou falta de atitude. Então, pensamos na ideia de um site, onde você se cadastra e poderá se confessar secretamente para quem desejar.</p> 
+      <p>Você pode criar uma sala com pessoas que conhece (ex: um grupo grande de amigos, uma sala de aula, etc) e então, após se juntarem à sala desejada, na interface do site, as pessoas dinamicamente poderão deixar um “coração” na pessoa que tem interesse romântico. </p>
+      <p>Porém, é claro que não esqueceríamos de incluir as pessoas mais tímidas. A pessoa que recebeu o “coração” não será notificada disso, só caso ela também deixe um “coração” mutuamente no outro. Tendo interesse mútuo, eles serão notificados de um “Jackpot!” e saberão que ambas as partes têm interesse. </p>
+  </div>
+    <table>
+      <caption>Exemplo de como Funciona o Site</caption>
+      <thead>
+        <tr>
+          <th>Usuários Definidos</th>
+          <th>João</th>
+          <th>Vitor</th>
+          <th>Coelho</th>
+          <th>Coelha</th>
+          <th>Compatibilidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>João</th>
+          <td>❤️</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Vitor</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>Coelho</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="heart">❤️</td>
+          <td>🎉 DATEPOT! 🎉</td>
+        </tr>
+        <tr>
+          <th>Coelha</th>
+          <td></td>
+          <td></td>
+          <td class="heart">❤️</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>    
+</div>
 <footer>
     &copy; 2025 Datepot. Todos os direitos reservados ao João e ao Vítor.
 </footer>
-
-<!-- Referenciando o arquivo JS externo -->
 <script src="incremento.js"></script>
-
+<audio id="somAdicionar" src="som1.mp3" preload="auto"></audio>
+<audio id="somDefinir" src="som1.mp3" preload="auto"></audio>
+<audio id="somCoracao" src="shine.mp3" preload="auto"></audio>
+<audio id="somJackpot" src="jackpot.mp3" preload="auto"></audio>
 </body>
-</html>
+    </html>
