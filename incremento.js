@@ -1,83 +1,91 @@
-let users = [];
-let currentUser = null;
+let usuarios = [];
+let usuarioAtual = null;
 
-function setCurrentUser() {
-    const username = document.getElementById('username').value.trim().toLowerCase();
-    if (username) {
-        currentUser = username;
-        alert(`Usuário definido como: ${currentUser}`);
+const somAdicionar = document.getElementById('somAdicionar');
+const somDefinir = document.getElementById('somDefinir');
+const somCoracao = document.getElementById('somCoracao');
+const somJackpot = document.getElementById('somJackpot');
+
+function definirUsuario() {
+    const nome = document.getElementById('username').value.trim().toLowerCase();
+    if (nome) {
+        usuarioAtual = nome;
+        somDefinir.play();
+        alert(`Usuário definido como: ${usuarioAtual}`);
         document.getElementById('username').value = '';
     } else {
         alert("Por favor, insira um nome válido!");
     }
 }
 
-function addName() {
-    const newUser = document.getElementById('newUser').value.trim().toLowerCase();
-    if (newUser && !users.some(user => user.name === newUser)) {
-        users.push({ name: newUser, hearts: [] });
-        displayUsers();
+function adionadordenome() {
+    const novoNome = document.getElementById('newUser').value.trim().toLowerCase();
+    if (novoNome && !usuarios.some(u => u.nome === novoNome)) {
+        usuarios.push({ nome: novoNome, coracoes: [] });
+        mostrarUsuarios();
+        somAdicionar.play();
         document.getElementById('newUser').value = '';
     } else {
         alert("Nome já existe ou está vazio!");
     }
 }
 
-function displayUsers() {
-    const nameList = document.getElementById('nameList');
-    nameList.innerHTML = '<h3>Usuários na Sala</h3>';
-    
-    users.forEach(user => {
-        const userElement = document.createElement('div');
-        userElement.classList.add('name-item');
-        
-        const userName = document.createElement('span');
-        userName.textContent = capitalize(user.name);
-        
-        const heartButton = document.createElement('button');
-        heartButton.textContent = '❤️';
-        heartButton.onclick = () => clickHeart(user.name);
+function mostrarUsuarios() {
+    const listaUsuarios = document.getElementById('nameList');
+    listaUsuarios.innerHTML = '<h3>Usuários na Sala</h3>';
 
-        userElement.appendChild(userName);
-        userElement.appendChild(heartButton);
-        
-        nameList.appendChild(userElement);
+    usuarios.forEach(usuario => {
+        const elemento = document.createElement('div');
+        elemento.classList.add('name-item');
+
+        const nomeSpan = document.createElement('span');
+        nomeSpan.textContent = capitalizar(usuario.nome);
+
+        const botaoCoracao = document.createElement('button');
+        botaoCoracao.textContent = '❤️';
+        botaoCoracao.onclick = () => clicarCoracao(usuario.nome);
+
+        elemento.appendChild(nomeSpan);
+        elemento.appendChild(botaoCoracao);
+        listaUsuarios.appendChild(elemento);
     });
 }
 
-function clickHeart(targetName) {
-    if (currentUser === null) {
+function clicarCoracao(nomeAlvo) {
+    if (usuarioAtual === null) {
         alert("Por favor, defina seu nome para começar.");
         return;
     }
 
-    const targetUser = users.find(user => user.name === targetName);
-    const user = users.find(user => user.name === currentUser);
+    const alvo = usuarios.find(u => u.nome === nomeAlvo);
+    const usuario = usuarios.find(u => u.nome === usuarioAtual);
 
-    if (user && targetUser) {
-        if (!user.hearts.includes(targetName)) {
-            user.hearts.push(targetName);
-            checkDatepot(targetUser, user);
+    if (usuario && alvo) {
+        if (!usuario.coracoes.includes(nomeAlvo)) {
+            usuario.coracoes.push(nomeAlvo);
+            somCoracao.play();
+            verificarDatepot(alvo, usuario);
         } else {
             alert("Você já clicou no coração dessa pessoa.");
         }
     }
 }
 
-function checkDatepot(targetUser, user) {
-    if (targetUser.hearts.includes(user.name)) {
-        const jackpotMessage = document.getElementById('jackpotMessage');
-        const jackpotNames = document.getElementById('jackpotNames');
-        jackpotMessage.style.display = 'flex';
-        jackpotNames.textContent = `${capitalize(user.name)} e ${capitalize(targetUser.name)}`;
+function verificarDatepot(alvo, usuario) {
+    if (alvo.coracoes.includes(usuario.nome)) {
+        const mensagem = document.getElementById('jackpotMessage');
+        const nomes = document.getElementById('jackpotNames');
+        mensagem.style.display = 'flex';
+        nomes.textContent = `${capitalizar(usuario.nome)} e ${capitalizar(alvo.nome)}`;
+        somJackpot.play();
     }
 }
 
-function closeJackpot() {
-    const jackpotMessage = document.getElementById('jackpotMessage');
-    jackpotMessage.style.display = 'none';
+function fecharDatepot() {
+    const mensagem = document.getElementById('jackpotMessage');
+    mensagem.style.display = 'none';
 }
 
-function capitalize(name) {
-    return name.charAt(0).toUpperCase() + name.slice(1);
+function capitalizar(nome) {
+    return nome.charAt(0).toUpperCase() + nome.slice(1);
 }
